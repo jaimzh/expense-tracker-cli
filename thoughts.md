@@ -44,3 +44,5 @@ For cli handling in the main.py we have parsers, sub parsers and then arguments
 - Subparser that is the command git **commit** or **add** or  **list**
 - Argument flaag that is -m or --desciption, more or less kwarg
 - The value is well the value something like args.description 
+
+Alright so now to add the features 

@@ -20,9 +20,8 @@ def write_in_json( data):
     try:
         with open(filename, "w") as file:
             json.dump(data, file, indent=4)
-        # return somethin
     except Exception:
-        print("we have a problem while writing json", Exception)
+        return("error")
         
 def display(response):
     
@@ -37,7 +36,8 @@ def display(response):
 def json_setup():
     
     preset = {
-        "expenses": []
+        "expenses": [], 
+        "budget" : []
     }
     write_in_json(preset)
 
@@ -50,25 +50,42 @@ def json_setup():
 
 
 def get_expense_list():
-    json_data = loaded_json()
-    return json_data["expenses"]
+    try:
+        json_data = loaded_json()
+        return json_data["expenses"]
+    except: 
+        return ("Empty")
+
+def get_budget_list():
+    try:
+        json_data = loaded_json()
+        return json_data["budget"]
+    except: 
+        return ("Empty")
 
 
 
 
 def add_expense(desc, amount, category = None):
-    expenses = get_expense_list()
-    data = loaded_json()
     
-    expense = Expense(len(expenses) + 1, description=desc, amount=amount, category=category ) 
-    new_expense = expense.get_json_obj()
- 
-   
-    data["expenses"].append(new_expense)      
-    write_in_json(data)
-    print("written")
     
-# add_expense("heyyyy", 20, )
+    #if get expense list i
+    
+    if get_expense_list() == "Empty": 
+        json_setup()
+    
+    else: 
+        expenses = get_expense_list()
+        data = loaded_json()
+        
+        expense = Expense(len(expenses) + 1, description=desc, amount=amount, category=category ) 
+        new_expense = expense.get_json_obj()
+    
+    
+        data["expenses"].append(new_expense)      
+        write_in_json(data)
+        print("written")
+    
 
 
 def get_expense_by_id(ex_id):
@@ -106,7 +123,7 @@ def update_expense(ex_id, desc=None, amount=None, category=None):
 def update_expense(ex_id, desc=None, amount=None, category=None):
     old_expense = get_expense_by_id(ex_id)
 
-    if old_expense:  # Check if the expense is found
+    if old_expense:  
         if desc:
             old_expense['desc'] = desc
         if amount:
@@ -151,30 +168,6 @@ def update_expense(ex_id, desc=None, amount=None, category=None):
     print(f"Expense {ex_id} updated successfully.")
 
 
-
-
-
-# def update_expense(ex_id, desc=None, amount=None, category=None):
-#     old_expense = get_expense_by_id(ex_id)
-#     old_expense['desc'] = desc 
-#     if amount : old_expense['amount'] = amount
-#     if category:  old_expense['category'] = category
-    
-    
-#     expenses = get_expense_list()
-#     expenses[ex_id - 1] = old_expense
-
-#     data = loaded_json()  
-    
-#     data["expenses"] = expenses  
-#     write_in_json(data)
-#     print("written")
-    
-  
-  
-# update_expense(2, desc="New Description", amount=50)      
-# update_expense(1, "ello governor" ,40 , "okay")
-
 def delete_expense(ex_id):
     
     expenses = get_expense_list()
@@ -191,7 +184,6 @@ def delete_expense(ex_id):
     
     
     
-# delete_expense(4)
 
 """SUMmary hehe...get it, cuz it's the SUM of all the amounts
     but it's literally called summary with the SUM
@@ -217,12 +209,47 @@ def get_date_month(date):
 
 # print("testing something ", get_date_month("2025-08-01"))
 
-def month_sum_expenses(date):
+
+def set_month_budget(month, budget): 
+    budget_list = get_budget_list()
+    
+    if budget_list == "Empty":
+        json_setup()
+    
+    else: 
+        budget_list = get_budget_list()
+        data = loaded_json()
+        
+        new_budget = {
+            "month": month,
+            "budget": budget
+        }
+ 
+        data["budget"].append(new_budget)      
+        write_in_json(data)
+        print("written")
+    
+def get_month_budget(month):
+    budget_list = get_budget_list()
+    for budget in budget_list: 
+        if budget["month"] == month: 
+            return budget["budget"]
+    return None
+
+def warn_when_expenses_exceed_budget(month, budget):
+    month_total = month_sum_expenses(month)
+    if month_total > budget:
+        print("Warning: You have exceeded your budget for this month.")
+
+
+set_month_budget(8, 1000)   
+
+def month_sum_expenses(month):
     expenses = get_expense_list()
     total = 0
     
     for expense in expenses: 
-        if get_date_month(expense["date"]) == int(date) :
+        if get_date_month(expense["date"]) == int(month) :
             total = expense["amount"]  + total 
         
     print("ready")
@@ -243,22 +270,7 @@ def category_filter(category):
     return filtered_list 
 
 
-# print(category_filter("Misc"))
-# - view all expenses: function w/ no arguments that returns just the entire list 
 
-
-
-
-# ### View functions 
-# - view summary: function w/ no arguments which just takes all the amounts and sums them
-# - view month summary:  pass in month number and it returns the sum of all amounts in that year
-
-
-    
-    
-
-
-    
     
     
 
