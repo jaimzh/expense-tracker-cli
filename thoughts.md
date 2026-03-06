@@ -33,3 +33,14 @@ Alright so my plan is to first of all set up schema's for the finance tracker so
 - add category so that we can return based on category as well, so that is add category function and view by category funtion
 - allow users to export expenses to a csv or even a json 
 
+
+
+# Notes: 
+hmm so something i have noticed, is that when it commes to crud api's/functions i usually make the read(list all) api first then add... i mean it only makes sense, test if it can hold something in the right format and then testiing if you can add somethign
+
+For cli handling in the main.py we have parsers, sub parsers and then arguments 
+
+- Parser that is like git or python main.py //the main stuff 
+- Subparser that is the command git **commit** or **add** or  **list**
+- Argument flaag that is -m or --desciption, more or less kwarg
+- The value is well the value something like args.description 
