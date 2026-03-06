@@ -4,9 +4,9 @@ A simple tool to manage your finances from the command line. You can keep track 
 
 Project idea from [roadmap.sh](https://roadmap.sh/projects/expense-tracker)
 
-<!-- ## Screenshot don't forget to add this later
+## Screenshot don't forget to add this later
 
-![alt text](image.png) -->
+![alt text](image.png)
 
 ## Project Structure:
 
