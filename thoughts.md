@@ -46,7 +46,7 @@ For cli handling in the main.py we have parsers, sub parsers and then arguments
 - The value is well the value something like args.description 
 
 Alright so now to add the features 
-
+To handle csv files we have the csv module, check if it exists in dir, if not create it, with open write the file and then use dictwriter to write the header and then the rows 
 
 
 

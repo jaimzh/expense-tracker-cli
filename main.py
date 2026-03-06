@@ -1,7 +1,7 @@
 import argparse
 
 from budget_manager import get_budget_list, get_month_budget
-from expense_manager import add_expense, delete_expense, get_expense_list, month_sum_expenses, sum_expenses, update_expense
+from expense_manager import add_expense, delete_expense, get_expense_list, month_sum_expenses, sum_expenses, update_expense, export_expense
 from view_manager import render_error, render_success, render_table, render_table_budget
 from budget_manager import set_month_budget
 
@@ -40,8 +40,8 @@ def main():
     budget_parser.add_argument("--view-all", action="store_true")
     budget_parser.add_argument("--view-month", type=int)
     #export command 
-    # export_parser = subparsers.add_parser("export")
-    # export_parser.add_argument("--file", type=str)
+    export_parser = subparsers.add_parser("export")
+    export_parser.add_argument("--file", type=str)
 
     args = parser.parse_args()
 
@@ -79,9 +79,8 @@ def main():
         else:
             render_error("Please provide both month and amount")
     
-    
-    # elif args.command == "export":
-    #     export_expense(args.file)
+    elif args.command == "export":
+        export_expense(args.file)
     
     
 

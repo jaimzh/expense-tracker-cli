@@ -1,5 +1,6 @@
 from expenses import Expense
 from utils import loaded_json, write_in_json, json_setup, get_date_month
+import csv
 
 #CRUD functions for the most part
 
@@ -135,3 +136,23 @@ def delete_expense(ex_id):
     data["expenses"] = expenses  
     write_in_json(data)
     print("deleted")
+
+# #export function
+def export_expense(file_path):
+    if not file_path:
+        file_path = "expenses.csv"
+        
+    expenses = get_expense_list()
+    if not expenses:
+        print("No expenses to export.")
+        return
+        
+    try:
+        with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+            keys = expenses[0].keys() #this is to get the keys in the first dictionary of expenses{key: val} 
+            writer = csv.DictWriter(file, fieldnames=keys)
+            writer.writeheader() #this just the fieldnames that we specified earlier to be the header 
+            writer.writerows(rowdicts=expenses) #self explanatory, writes the rows of the expenses. Thanks to dictwriter, it will write the keys as the header and the values as the rows
+        print(f"Expenses exported successfully to '{file_path}'.")
+    except Exception as e:
+        print(f"Error exporting expenses: {e}")

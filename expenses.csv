@@ -1,0 +1,14 @@
+id,date,desc,amount,category,budget
+1,2025-08-01,Summer Ice Cream,5.5,Food,500
+2,2025-08-15,New Description,50,Housing,
+3,2025-08-20,Beach Parking,10.0,Transport,
+4,2026-03-03,Grocery Shopping,85.4,Food,
+5,2026-03-04,Bus Fare,2.5,Transport,
+6,2026-03-05,Gummy Bears,6.5,Misc,
+7,2026-03-06,Eating food,5000.0,Misc,
+8,2026-03-06,Going to school,20.0,school,
+9,2026-03-06,Lunch at McDonald's,12.5,Food,
+10,2026-03-06,Lunch at McDonald's,12.5,Food,
+11,2026-03-06,Movie tickets,25.0,Entertainment,
+12,2026-03-06,Internet Bill,60.0,Utilities,
+13,2026-03-06,Random snacks,5.25,Misc,
