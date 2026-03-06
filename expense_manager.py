@@ -48,8 +48,6 @@ def month_sum_expenses(month):
     for expense in expenses: 
         if get_date_month(expense["date"]) == int(month) :
             total = expense["amount"]  + total 
-        
-    print("ready")
     return total
 
 def category_filter(category):

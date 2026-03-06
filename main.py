@@ -47,18 +47,18 @@ def main():
 
     if args.command == "add": 
         add_expense(desc= args.description , amount=args.amount, category=args.category)
-        render_success("Expense added successfully!")
+        render_success("Expense added successfully")
 
     elif args.command == "list":
         render_table(get_expense_list())
     
     elif args.command == "delete":
         delete_expense(args.id)
-        render_success("Expense deleted successfully!")
+        render_success("Expense deleted successfully")
     
     elif args.command == "update":
         update_expense(args.id, args.description, args.amount, args.category)
-        render_success("Expense updated successfully!")
+        render_success("Expense updated successfully")
     
     elif args.command == "summary":
         if args.month:
@@ -72,12 +72,12 @@ def main():
         if args.view_all:
             render_table_budget(get_budget_list())
         elif args.view_month:
-            render_success(f"Budget for {args.view_month}: {get_month_budget(args.view_month)}")
+            render_success(f"Budget for month {args.view_month}: {get_month_budget(args.view_month)}")
         elif args.month and args.amount:
             set_month_budget(args.month, args.amount)
-            render_success(f"Budget of ${args.amount} set for month {args.month}!")
+            render_success(f"Budget of ${args.amount} set for month {args.month}")
         else:
-            render_error("Please provide both month and amount!")
+            render_error("Please provide both month and amount")
     
     
     # elif args.command == "export":

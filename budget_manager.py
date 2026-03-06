@@ -25,7 +25,6 @@ def set_month_budget(month, budget):
         json_setup()
     
     else: 
-        budget_list = get_budget_list()
         data = loaded_json()
         
         new_budget = {
